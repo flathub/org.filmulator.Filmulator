@@ -155,16 +155,12 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/CarVac/filmulator-gui/archive/v0.10.2.tar.gz",
-                    "sha256": "dbaf6dfdc7026ca804119cfcbd51366aa7fe0eb29e0e902ae98441ababbc9fbc"
+                    "url": "https://github.com/CarVac/filmulator-gui/archive/v0.11.0.tar.gz",
+                    "sha256": "d3381cb967a4353e15b4046765eb5d69f7641734363e20d3458e23614d638798"
                 },
                 {
                     "type": "patch",
                     "path": "patches/filmulator-fixes.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/filmulator-issue-128.patch"
                 },
                 {
                     "type": "file",

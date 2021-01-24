@@ -1,18 +1,3 @@
-diff --git a/filmulator-gui/filmulator-gui.desktop.in b/filmulator-gui/filmulator-gui.desktop.in
-index 96ee5c7..9c686c1 100644
---- a/filmulator-gui/filmulator-gui.desktop.in
-+++ b/filmulator-gui/filmulator-gui.desktop.in
-@@ -1,9 +1,8 @@
- [Desktop Entry]
- Type=Application
--Encoding=UTF-8
- Name=Filmulator
- Comment=Streamlined photo editor
--Exec=cd/usr/lib/filmulator-gui && /usr/lib/filmulator-gui/filmulator-gui
-+Exec=filmulator-gui
- Icon=filmulator-gui
- Terminal=false
- Categories=Graphics;Photography;Qt;
 diff --git a/filmulator-gui/filmulator-gui.pro b/filmulator-gui/filmulator-gui.pro
 index 8c5b407..cd5eb5a 100644
 --- a/filmulator-gui/filmulator-gui.pro
