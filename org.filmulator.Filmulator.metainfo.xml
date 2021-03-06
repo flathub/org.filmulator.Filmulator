@@ -20,6 +20,8 @@
  <url type="bugtracker">https://github.com/CarVac/filmulator-gui/issues</url>
  <content_rating type="oars-1.1" />
  <releases>
+   <release version="0.11.1" date="2021-03-06" />
+   <release version="0.11.0" date="2021-01-23" />
    <release version="0.10.2" date="2020-12-24" />
    <release version="0.10.1" date="2020-11-22" />
    <release version="0.10.0" date="2020-11-21" />

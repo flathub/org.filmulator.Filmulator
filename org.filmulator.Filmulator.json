@@ -155,8 +155,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/CarVac/filmulator-gui/archive/v0.11.0.tar.gz",
-                    "sha256": "d3381cb967a4353e15b4046765eb5d69f7641734363e20d3458e23614d638798"
+                    "url": "https://github.com/CarVac/filmulator-gui/archive/v0.11.1.tar.gz",
+                    "sha256": "29a802e8f3c2beeb8b5b051780a1cdf643a3c1b15450afe0cab3159be7bc4421"
                 },
                 {
                     "type": "patch",
