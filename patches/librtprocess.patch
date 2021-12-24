@@ -1,0 +1,13 @@
+diff --git a/src/include/librtprocess.h b/src/include/librtprocess.h
+index ea97b82..54872fc 100644
+--- a/src/include/librtprocess.h
++++ b/src/include/librtprocess.h
+@@ -20,6 +20,8 @@
+ #ifndef _LIBRTPROCESS_
+ #define _LIBRTPROCESS_
+ 
++#include <stddef.h>
++
+ #include <functional>
+ #include <cstddef>
+ 
