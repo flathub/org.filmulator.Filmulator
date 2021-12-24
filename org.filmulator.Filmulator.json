@@ -1,7 +1,7 @@
 {
     "app-id": "org.filmulator.Filmulator",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.15",
+    "runtime-version": "5.15-21.08",
     "sdk": "org.kde.Sdk",
     "command": "filmulator-gui",
     "rename-desktop-file": "filmulator-gui.desktop",
@@ -44,12 +44,6 @@
             ],
             "build-options": {
                 "arch": {
-                    "i386": {
-                        "config-opts": [
-                            "-DBUILD_FOR_SSE=1",
-                            "-DBUILD_FOR_SSE2=1"
-                        ]
-                    },
                     "x86_64": {
                         "config-opts": [
                             "-DBUILD_FOR_SSE=1",
@@ -82,16 +76,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://www.exiv2.org/builds/exiv2-0.27.3-Source.tar.gz",
-                    "sha256": "a79f5613812aa21755d578a297874fb59a85101e793edc64ec2c6bd994e3e778"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/exiv2-arch-flags.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/exiv2-arch-flags-2.patch"
+                    "url": "http://www.exiv2.org/builds/exiv2-0.27.5-Source.tar.gz",
+                    "sha256": "35a58618ab236a901ca4928b0ad8b31007ebdc0386d904409d825024e45ea6e2"
                 }
             ]
         },
@@ -137,6 +123,10 @@
                     "type": "archive",
                     "url": "https://github.com/CarVac/librtprocess/archive/0.11.0.tar.gz",
                     "sha256": "0a1691e6e90742644506a1123c716cdcfc28689adf461747843ab0440a837584"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/librtprocess.patch"
                 }
             ]
         },
