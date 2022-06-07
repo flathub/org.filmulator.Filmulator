@@ -138,8 +138,8 @@
                 "ln -sf /app/lib/filmulator-gui/filmulator-gui /app/bin",
                 "install -Dm644 -t /app/share/icons/hicolor/scalable/apps resources/filmulator64icon.svg",
                 "install -Dm644 -t /app/share/icons/hicolor/64x64/apps resources/filmulator64icon.png",
-                "install -d /app/share/applications/",
-                "install -m644  filmulator-gui.desktop.in /app/share/applications/filmulator-gui.desktop",
+                "install -Dm644 filmulator-gui.desktop.in ${FLATPAK_DEST}/share/applications/filmulator-gui.desktop",
+                "desktop-file-edit --set-key=Exec --set-value=filmulator-gui ${FLATPAK_DEST}/share/applications/filmulator-gui.desktop",
                 "install -Dm644 -t /app/share/metainfo org.filmulator.Filmulator.metainfo.xml"
             ],
             "sources": [
