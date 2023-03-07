@@ -1,7 +1,7 @@
 {
     "app-id": "org.filmulator.Filmulator",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.15-21.08",
+    "runtime-version": "5.15-22.08",
     "sdk": "org.kde.Sdk",
     "command": "filmulator-gui",
     "rename-desktop-file": "filmulator-gui.desktop",
@@ -76,8 +76,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://www.exiv2.org/builds/exiv2-0.27.5-Source.tar.gz",
-                    "sha256": "35a58618ab236a901ca4928b0ad8b31007ebdc0386d904409d825024e45ea6e2"
+                    "url": "https://github.com/Exiv2/exiv2/releases/download/v0.27.6/exiv2-0.27.6-Source.tar.gz",
+                    "sha256": "4c192483a1125dc59a3d70b30d30d32edace9e14adf52802d2f853abf72db8a6"
                 }
             ]
         },
@@ -121,12 +121,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/CarVac/librtprocess/archive/0.11.0.tar.gz",
-                    "sha256": "0a1691e6e90742644506a1123c716cdcfc28689adf461747843ab0440a837584"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/librtprocess.patch"
+                    "url": "https://github.com/CarVac/librtprocess/archive/0.12.0.tar.gz",
+                    "sha256": "ed6862b1491559e71dbebe8cbb299008fb16e230acf3bb9d42bd52942644c4d9"
                 }
             ]
         },
@@ -137,7 +133,6 @@
             "post-install": [
                 "ln -sf /app/lib/filmulator-gui/filmulator-gui /app/bin",
                 "install -Dm644 -t /app/share/icons/hicolor/scalable/apps resources/filmulator64icon.svg",
-                "install -Dm644 -t /app/share/icons/hicolor/64x64/apps resources/filmulator64icon.png",
                 "install -Dm644 filmulator-gui.desktop.in ${FLATPAK_DEST}/share/applications/filmulator-gui.desktop",
                 "desktop-file-edit --set-key=Exec --set-value=filmulator-gui ${FLATPAK_DEST}/share/applications/filmulator-gui.desktop",
                 "install -Dm644 -t /app/share/metainfo org.filmulator.Filmulator.metainfo.xml"
