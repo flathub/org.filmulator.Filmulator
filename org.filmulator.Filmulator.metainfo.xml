@@ -5,6 +5,8 @@
  <project_license>GPL-2.0+</project_license>
  <name>Filmulator</name>
  <summary>A GUI adaptation of Filmulator, a film emulator with all of the positives and none of the negatives</summary>
+ <developer_name>Filmulator Developers</developer_name>
+ <launchable type="desktop-id">org.filmulator.Filmulator.desktop</launchable>
  <description>
    <p>Filmulator accepts raw files from cameras and simulates the
    development of film as if exposed to the same light as the camera's
@@ -12,7 +14,7 @@
  </description>
  <screenshots>
   <screenshot type="default">
-   <image>https://camo.githubusercontent.com/326f36d3348e0cfb54860187101a1e0ca48fa84c/687474703a2f2f692e696d6775722e636f6d2f68584948556b642e706e67</image>
+    <image>https://filmulator.org/images/screenshots/0.8_Filmulate_overview.png</image>
    <caption>The Filmulator window</caption>
   </screenshot>
  </screenshots>
