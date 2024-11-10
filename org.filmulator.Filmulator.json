@@ -1,18 +1,16 @@
 {
     "app-id": "org.filmulator.Filmulator",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.15-23.08",
+    "runtime-version": "5.15-24.08",
     "sdk": "org.kde.Sdk",
     "command": "filmulator-gui",
     "rename-desktop-file": "filmulator-gui.desktop",
     "rename-icon": "filmulator64icon",
     "finish-args": [
-        /* X11 fallback */
         "--socket=fallback-x11",
-        /* Wayland */
         "--socket=wayland",
+        "--share=ipc",
         "--device=dri",
-        /* Allow loading, saving files from home dir */
         "--filesystem=home",
         /* Allow other instances to see lockfiles */
         "--env=TMPDIR=/var/tmp",
