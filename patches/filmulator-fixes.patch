@@ -1,26 +1,28 @@
-diff --git a/filmulator-gui/filmulator-gui.pro b/filmulator-gui/filmulator-gui.pro
-index 8c5b407..cd5eb5a 100644
---- a/filmulator-gui/filmulator-gui.pro
-+++ b/filmulator-gui/filmulator-gui.pro
-@@ -62,8 +62,8 @@ SOURCES += qml/filmulator-gui/*.qml \
- TRANSLATIONS = translations/filmulator-gui_de.ts
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e9414d9..2bc72a8 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -33,9 +33,9 @@ find_package(PkgConfig REQUIRED)
+ pkg_check_modules(GLIB REQUIRED IMPORTED_TARGET glib-2.0)
  
- # Installation path
--unix:target.path = /usr/lib/filmulator-gui
--unix:desktop.path = /usr/share/applications
-+unix:target.path = /app/lib/filmulator-gui
-+unix:desktop.path = /app/share/applications
- 
- unix:desktop.files += ./filmulator_gui.desktop
- 
-@@ -76,8 +76,8 @@ win32:LIBS += -L/usr/lib
- 
- unix {
- script.extra = move_script; install -m 755 -p filmulator
--extra.path = /usr/bin
--LIBS += -L/usr/local/lib
-+extra.path = /app/bin
-+LIBS += -L/app/lib
- }
- 
- # Please do not modify the following two lines. Required for deployment.
+ # find a bunch of packages (vcpkg provides CONFIG mode packages)
+-find_package(rtprocess CONFIG REQUIRED)
+-find_package(exiv2 CONFIG REQUIRED)
+-find_package(libraw CONFIG REQUIRED)
++find_package(rtprocess REQUIRED)
++find_package(Exiv2 REQUIRED)
++find_package(libraw REQUIRED)
+ find_package(JPEG REQUIRED)
+ find_package(TIFF REQUIRED)
+ find_package(OpenMP REQUIRED)
+@@ -205,8 +205,8 @@ target_link_libraries(filmulator
+         Qt5::Widgets
+         Qt5::Quick
+         Qt5::Qml
+-        Exiv2::exiv2lib       # exiv2 modern target
+-        libraw::raw_r         # libraw modern target
++        ${EXIV2_LIBRARIES}
++        ${LIBRAW_LIBRARIES}
+         JPEG::JPEG            # CMake built-in JPEG target
+         TIFF::TIFF            # TIFF modern target
+         ${LENSFUN_TARGET}

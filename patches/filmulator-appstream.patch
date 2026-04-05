@@ -1,0 +1,128 @@
+commit a4306d4ff321361441af6116b5dff7ec6db285df
+Author: Hubert Figuière <hub@figuiere.net>
+Date:   Sun Apr 5 13:03:17 2026 -0400
+
+    Added the appstream file
+    
+    Install desktop, icon and appstream file in right place.
+    Both CMake and qmake
+    
+    Signed-off-by: Hubert Figuière <hub@figuiere.net>
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e9414d9..592c7e7 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -257,6 +257,12 @@ else()
+ 
+ endif()
+ 
++if(UNIX)
++    install(FILES "${CMAKE_SOURCE_DIR}/filmulator-gui/resources/filmulator64icon.svg" DESTINATION share/icons/hicolor/scalable/apps)
++    install(FILES "${CMAKE_SOURCE_DIR}/filmulator-gui/resources/linux/filmulator.desktop" DESTINATION share/applications)
++    install(FILES "${CMAKE_SOURCE_DIR}/filmulator-gui/resources/linux/org.filmulator.Filmulator.metainfo.xml" DESTINATION share/metainfo)
++endif()
++
+ qt5_import_qml_plugins(filmulator)
+ 
+ add_subdirectory(filmulator-gui/qml)
+diff --git a/filmulator-gui/filmulator-gui.pro b/filmulator-gui/filmulator-gui.pro
+index 6c7d4c4..998240d 100644
+--- a/filmulator-gui/filmulator-gui.pro
++++ b/filmulator-gui/filmulator-gui.pro
+@@ -75,10 +75,16 @@ SOURCES += qml/filmulator-gui/*.qml \
+ }
+ 
+ # Installation path
+-unix:target.path = /usr/lib/filmulator-gui
+-unix:desktop.path = /usr/share/applications
++unix:target.path = $$(PREFIX)/lib/filmulator-gui
+ 
+-unix:desktop.files += ./filmulator_gui.desktop
++unix:icon.path = $$(PREFIX)/share/icons/hicolor/scalable/apps
++unix:icon.files += ./resources/linux/filmulator64icon.svg
++
++unix:desktop.path = $$(PREFIX)/share/applications
++unix:desktop.files += ./resources/linux/filmulator.desktop
++
++unix:appstream.path = $$(PREFIX)/share/metainfo
++unix:appstream.files += ./resources/linux/org.filmulator.Filmulator.metainfo.xml
+ 
+ # win32 {
+ # target.path = ???
+@@ -172,7 +178,7 @@ QT += sql core quick qml widgets
+ 
+ CONFIG += qtquickcompiler
+ 
+-INSTALLS += desktop extra
++INSTALLS += desktop appstream icon extra
+ 
+ RESOURCES += \
+     qml.qrc \
+diff --git a/filmulator-gui/resources/linux/filmulator.desktop b/filmulator-gui/resources/linux/filmulator.desktop
+index 4931dfe..f070d71 100644
+--- a/filmulator-gui/resources/linux/filmulator.desktop
++++ b/filmulator-gui/resources/linux/filmulator.desktop
+@@ -3,6 +3,6 @@ Type=Application
+ Name=Filmulator
+ Comment=Simple raw photo editor based on film development
+ Exec=filmulator
+-Icon=filmulator
++Icon=filmulator64icon
+ Categories=Graphics;Photography;
+ Terminal=false
+diff --git a/filmulator-gui/resources/linux/org.filmulator.Filmulator.metainfo.xml b/filmulator-gui/resources/linux/org.filmulator.Filmulator.metainfo.xml
+new file mode 100644
+index 0000000..1917437
+--- /dev/null
++++ b/filmulator-gui/resources/linux/org.filmulator.Filmulator.metainfo.xml
+@@ -0,0 +1,37 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<component type="desktop">
++ <id>org.filmulator.Filmulator</id>
++ <metadata_license>CC0</metadata_license>
++ <project_license>GPL-2.0+</project_license>
++ <name>Filmulator</name>
++ <summary>Simple raw photo editor based on film development</summary>
++ <developer id="org.filmulator">
++   <name>Filmulator Developers</name>
++ </developer>
++ <launchable type="desktop-id">filmulator.desktop</launchable>
++ <description>
++   <p>A GUI adaptation of Filmulator, a film emulator with all of the
++   positives and none of the negatives. Filmulator accepts raw files
++   from cameras and simulates the development of film as if exposed to
++   the same light as the camera's sensor.</p>
++ </description>
++ <screenshots>
++  <screenshot type="default">
++    <image>https://filmulator.org/images/screenshots/0.8_Filmulate_overview.png</image>
++   <caption>The Filmulator window</caption>
++  </screenshot>
++ </screenshots>
++ <url type="homepage">https://filmulator.org/</url>
++ <url type="vcs-browser">https://github.com/CarVac/filmulator-gui/</url>
++ <url type="bugtracker">https://github.com/CarVac/filmulator-gui/issues</url>
++ <content_rating type="oars-1.1" />
++ <releases>
++   <release version="0.12.0" date="2026-04-03" />
++   <release version="0.11.1" date="2021-03-06" />
++   <release version="0.11.0" date="2021-01-23" />
++   <release version="0.10.2" date="2020-12-24" />
++   <release version="0.10.1" date="2020-11-22" />
++   <release version="0.10.0" date="2020-11-21" />
++   <release version="0.9.0" date="2020-09-17" />
++ </releases>
++</component>
+diff --git a/release_instructions.md b/release_instructions.md
+index f4054f7..31d9961 100644
+--- a/release_instructions.md
++++ b/release_instructions.md
+@@ -2,6 +2,7 @@ Things to do when performing a new release
+ 
+ * Update Innosetup script version number
+ * Update CMakeLists version number
++* Add a release in resources/linux/org.filmulator.Filmulator.metainfo.xml
+ * Get translations
+ * Grab builds for Linux and Windows
+ * Test builds with both new and existing databases

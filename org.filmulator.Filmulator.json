@@ -1,10 +1,10 @@
 {
     "app-id": "org.filmulator.Filmulator",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.15-24.08",
+    "runtime-version": "5.15-25.08",
     "sdk": "org.kde.Sdk",
-    "command": "filmulator-gui",
-    "rename-desktop-file": "filmulator-gui.desktop",
+    "command": "filmulator",
+    "rename-desktop-file": "filmulator.desktop",
     "rename-icon": "filmulator64icon",
     "finish-args": [
         "--socket=fallback-x11",
@@ -30,8 +30,8 @@
             "name": "lensfun",
             "buildsystem": "cmake-ninja",
             "config-opts": [
+		"-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DCMAKE_INSTALL_LIBDIR=/app/lib",
                 "-DBUILD_FOR_SSE=0",
                 "-DBUILD_FOR_SSE2=0"
             ],
@@ -65,6 +65,7 @@
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DEXIV2_BUILD_DOC:BOOL=OFF",
                 "-DEXIV2_BUILD_EXIV2_COMMAND=OFF",
+                "-DEXIV2_ENABLE_INIH=OFF",
                 "-DEXIV2_BUILD_SAMPLES=OFF"
             ],
             "cleanup": [
@@ -74,8 +75,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/Exiv2/exiv2/releases/download/v0.27.6/exiv2-0.27.6-Source.tar.gz",
-                    "sha256": "4c192483a1125dc59a3d70b30d30d32edace9e14adf52802d2f853abf72db8a6"
+                    "url": "https://github.com/Exiv2/exiv2/archive/refs/tags/v0.28.8.tar.gz",
+                    "sha256": "ea51b0609f58a9afa063b60daa1539948b62247721e154f4fff0ad3aec9f9756"
                 }
             ]
         },
@@ -92,8 +93,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.libraw.org/data/LibRaw-0.20.0.tar.gz",
-                    "sha256": "1f0a383da2ce9f409087facd28261decbf6be72cc90c78cd003b0766e4d694a3"
+                    "url": "https://www.libraw.org/data/LibRaw-0.22.0.tar.gz",
+                    "sha256": "1071e6e8011593c366ffdadc3d3513f57c90202d526e133174945ec1dd53f2a1"
                 },
                 {
                     "type": "archive",
@@ -126,29 +127,24 @@
         },
         {
             "name": "filmulator",
-            "buildsystem": "qmake",
-            "subdir": "filmulator-gui",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
             "post-install": [
-                "ln -sf /app/lib/filmulator-gui/filmulator-gui /app/bin",
-                "install -Dm644 -t /app/share/icons/hicolor/scalable/apps resources/filmulator64icon.svg",
-                "install -Dm644 filmulator-gui.desktop.in ${FLATPAK_DEST}/share/applications/filmulator-gui.desktop",
-                "desktop-file-edit --set-key=Exec --set-value=filmulator-gui ${FLATPAK_DEST}/share/applications/filmulator-gui.desktop",
-                "install -Dm644 -t /app/share/metainfo org.filmulator.Filmulator.metainfo.xml"
+                "install -Dm644 ../filmulator-gui/resources/filmulator64icon.svg -t /app/share/icons/hicolor/scalable/apps"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/CarVac/filmulator-gui/archive/v0.11.1.tar.gz",
-                    "sha256": "29a802e8f3c2beeb8b5b051780a1cdf643a3c1b15450afe0cab3159be7bc4421"
+                    "url": "https://github.com/CarVac/filmulator-gui/archive/v0.12.0.tar.gz",
+                    "sha256": "8f69d47f45234cd452ae6a864329a6c668845778aff84552d318ee977ddb2df2"
                 },
                 {
                     "type": "patch",
-                    "path": "patches/filmulator-fixes.patch"
-                },
-                {
-                    "type": "file",
-                    "path": "org.filmulator.Filmulator.metainfo.xml",
-                    "dest": "filmulator-gui"
+                    "paths": [
+                        "patches/filmulator-appstream.patch",
+                        "patches/filmulator-cxx-assert.patch",
+                        "patches/filmulator-fixes.patch"
+                    ]
                 }
             ]
         }
