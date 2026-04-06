@@ -6,11 +6,9 @@ index e9414d9..2bc72a8 100644
  pkg_check_modules(GLIB REQUIRED IMPORTED_TARGET glib-2.0)
  
  # find a bunch of packages (vcpkg provides CONFIG mode packages)
--find_package(rtprocess CONFIG REQUIRED)
--find_package(exiv2 CONFIG REQUIRED)
+ find_package(rtprocess CONFIG REQUIRED)
+ find_package(exiv2 CONFIG REQUIRED)
 -find_package(libraw CONFIG REQUIRED)
-+find_package(rtprocess REQUIRED)
-+find_package(Exiv2 REQUIRED)
 +find_package(libraw REQUIRED)
  find_package(JPEG REQUIRED)
  find_package(TIFF REQUIRED)
@@ -19,9 +17,8 @@ index e9414d9..2bc72a8 100644
          Qt5::Widgets
          Qt5::Quick
          Qt5::Qml
--        Exiv2::exiv2lib       # exiv2 modern target
+         Exiv2::exiv2lib       # exiv2 modern target
 -        libraw::raw_r         # libraw modern target
-+        ${EXIV2_LIBRARIES}
 +        ${LIBRAW_LIBRARIES}
          JPEG::JPEG            # CMake built-in JPEG target
          TIFF::TIFF            # TIFF modern target
