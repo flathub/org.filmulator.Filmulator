@@ -30,7 +30,7 @@
             "name": "lensfun",
             "buildsystem": "cmake-ninja",
             "config-opts": [
-		"-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+                "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DBUILD_FOR_SSE=0",
                 "-DBUILD_FOR_SSE2=0"
@@ -129,9 +129,6 @@
             "name": "filmulator",
             "buildsystem": "cmake-ninja",
             "builddir": true,
-            "post-install": [
-                "install -Dm644 ../filmulator-gui/resources/filmulator64icon.svg -t /app/share/icons/hicolor/scalable/apps"
-            ],
             "sources": [
                 {
                     "type": "archive",
